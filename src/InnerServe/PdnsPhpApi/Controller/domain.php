@@ -4,7 +4,7 @@ use Symfony\Component\HttpFoundation\Request;
 $domain = $app['controllers_factory'];
 
 /**
- * Return Domain Information
+ * Return Domain Information by domain
  */
 $domain->get('/{domain}', function($domain) use ($app)  {
     $domain_service = new \InnerServe\PdnsPhpApi\Service\DomainService($app['pdo']);
@@ -20,11 +20,11 @@ $domain->get('/{domain}', function($domain) use ($app)  {
 /**
  * Create a new Domain
  */
-$domain->put('/{domain}', function(\Silex\Application $app, Request $request, $domain) {
+$domain->post('/', function(\Silex\Application $app, Request $request) {
     $domain_service = new \InnerServe\PdnsPhpApi\Service\DomainService($app['pdo']);
 
     try {
-        return $app['json_response']->ok($domain_service->create($domain, $request->get('type'), $request->get('master')));
+        return $app['json_response']->ok($domain_service->create($request->get('domain'), $request->get('type'), $request->get('master')));
     } catch(\Exception $e) {
         return $app['json_response']->error($e->getMessage());
     }
@@ -33,7 +33,7 @@ $domain->put('/{domain}', function(\Silex\Application $app, Request $request, $d
 /**
  * Update/Overwrite Domain
  */
-$domain->post('/{domain}', function(\Silex\Application $app, Request $request, $domain) {
+$domain->put('/{domain}', function(\Silex\Application $app, Request $request, $domain) {
     $domain_service = new \InnerServe\PdnsPhpApi\Service\DomainService($app['pdo']);
 
     try {

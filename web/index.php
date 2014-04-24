@@ -1,6 +1,6 @@
 <?php
 /**
- * User: jeremib
+ * User: Jeremi Bergman <j@jeremi.me>
  * Date: 4/23/14
  * Time: 5:29 PM
  */
@@ -30,8 +30,8 @@ $app['pdo']->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
 $app['json_response'] = new JsonResponseService();
 
 
-
 require '../src/InnerServe/PdnsPhpApi/Controller/domain.php';
+require '../src/InnerServe/PdnsPhpApi/Controller/record.php';
 
 
 $app->run();

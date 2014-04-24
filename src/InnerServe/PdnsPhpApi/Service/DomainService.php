@@ -1,7 +1,8 @@
 <?php
 namespace InnerServe\PdnsPhpApi\Service;
 
-class DomainService extends Service {
+class DomainService extends Service
+{
 
     /**
      * Get domain information with all records and return as an associate array
@@ -9,12 +10,15 @@ class DomainService extends Service {
      * @param $domain
      * @return bool|array
      */
-    public function get($domain) {
+    public function get($domain)
+    {
         $stmt = $this->getPdo()->prepare("SELECT id, `name`, `type` FROM domains WHERE name = :domain");
         $stmt->execute(array('domain' => $domain));
         $data = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        if ( !$data ) { return false; }
+        if (!$data) {
+            return false;
+        }
 
         $stmt = $this->getPdo()->prepare("SELECT `name`, `type`, `content`, `ttl`, `prio`, `change_date` FROM records WHERE domain_id = :domain_id");
         $stmt->execute(array('domain_id' => $data['id']));
@@ -23,14 +27,15 @@ class DomainService extends Service {
         return $data;
     }
 
-    public function create($domain, $type = 'MASTER', $master = null) {
-        if ( $this->exists($domain) ) {
+    public function create($domain, $type = 'MASTER', $master = null)
+    {
+        if ($this->exists($domain)) {
             throw new \Exception("Domain Exists");
         }
 
         $type = strtoupper($type);
 
-        if ( $type == 'SLAVE' && empty($master) ) {
+        if ($type == 'SLAVE' && empty($master)) {
             throw new \Exception("Master parameter required for SLAVE domains.");
         }
 
@@ -40,18 +45,19 @@ class DomainService extends Service {
         return $this->get($domain);
     }
 
-    public function update($domain, $type = 'MASTER', $master = null, $new_domain = null) {
-        if ( !$this->exists($domain) ) {
+    public function update($domain, $type = 'MASTER', $master = null, $new_domain = null)
+    {
+        if (!$this->exists($domain)) {
             throw new \Exception("Domain not found");
         }
 
         $type = strtoupper($type);
 
-        if ( empty($new_domain) ) {
+        if (empty($new_domain)) {
             $new_domain = $domain;
         }
 
-        if ( $type == 'SLAVE' && empty($master) ) {
+        if ($type == 'SLAVE' && empty($master)) {
             throw new \Exception("Master parameter required for SLAVE domains.");
         }
 
@@ -61,8 +67,9 @@ class DomainService extends Service {
         return $this->get($new_domain);
     }
 
-    public function delete($domain) {
-        if ( !$this->exists($domain) ) {
+    public function delete($domain)
+    {
+        if (!$this->exists($domain)) {
             throw new \Exception("Domain not found");
         }
 
@@ -72,11 +79,19 @@ class DomainService extends Service {
         return true;
     }
 
-    private function exists($domain) {
+    public function exists($domain)
+    {
         $stmt = $this->getPdo()->prepare("SELECT COUNT(id) FROM domains WHERE name = :domain");
         $stmt->execute(array('domain' => $domain));
         $data = $stmt->fetch(\PDO::FETCH_NUM);
 
-        return ( $data[0] > 0 ) ? true : false;
+        return ($data[0] > 0) ? true : false;
+    }
+
+    public function getIdForDomain($domain) {
+        $stmt = $this->getPdo()->prepare("SELECT id FROM domains WHERE name = :domain");
+        $stmt->execute(array('domain' => $domain));
+        $data = $stmt->fetch(\PDO::FETCH_NUM);
+        return $data[0];
     }
 }
