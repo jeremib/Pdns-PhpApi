@@ -1,0 +1,18 @@
+{
+    "name": "jeremib/pdnsphpapi",
+    "description": "RESTful PHP API server for PowerDNS",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeremi Bergman",
+            "email": "j@jeremi.me"
+        }
+    ],
+    "homepage": "http://www.jeremi.me",
+    "require": {
+        "silex/silex": "~1.1",
+        "symfony/security": "~2.3",
+        "symfony/class-loader": "dev-master"
+    }
+}
