@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e106aee99f0577af72cccd9860e01ce7",
+    "hash": "d9612e4b72507b3a1474257f195d2c77",
     "packages": [
         {
             "name": "igorw/config-service-provider",
@@ -604,17 +604,17 @@
         },
         {
             "name": "symfony/security",
-            "version": "dev-master",
+            "version": "2.4.x-dev",
             "target-dir": "Symfony/Component/Security",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Security.git",
-                "reference": "bf15ba6fe71ae1040e209cee8a769672eb2e03bb"
+                "reference": "1f2b6d8dfea39071748becf040c8d8a23288e725"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Security/zipball/bf15ba6fe71ae1040e209cee8a769672eb2e03bb",
-                "reference": "bf15ba6fe71ae1040e209cee8a769672eb2e03bb",
+                "url": "https://api.github.com/repos/symfony/Security/zipball/1f2b6d8dfea39071748becf040c8d8a23288e725",
+                "reference": "1f2b6d8dfea39071748becf040c8d8a23288e725",
                 "shasum": ""
             },
             "require": {
@@ -650,7 +650,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -676,7 +676,7 @@
             ],
             "description": "Symfony Security Component",
             "homepage": "http://symfony.com",
-            "time": "2014-04-23 14:08:54"
+            "time": "2014-04-25 07:06:20"
         }
     ],
     "packages-dev": [
@@ -687,6 +687,8 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "silex/silex": 20,
+        "symfony/security": 20,
         "symfony/class-loader": 20,
         "igorw/config-service-provider": 20
     },

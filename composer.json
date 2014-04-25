@@ -12,7 +12,7 @@
     ],
     "homepage": "http://www.jeremi.me",
     "require": {
-        "symfony/security": "2.4.*@dev",
+        "silex/silex": "1.2.*@dev",
         "symfony/security": "2.4.*@dev",
         "symfony/class-loader": "2.5.*@dev",
         "igorw/config-service-provider": "1.2.*@dev"
@@ -22,7 +22,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.1-dev"
         }
     }
 }
