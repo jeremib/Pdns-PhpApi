@@ -12,9 +12,9 @@
     ],
     "homepage": "http://www.jeremi.me",
     "require": {
-        "silex/silex": "~1.1",
-        "symfony/security": "~2.3",
-        "symfony/class-loader": "dev-master",
+        "symfony/security": "2.4.*@dev",
+        "symfony/security": "2.4.*@dev",
+        "symfony/class-loader": "2.5.*@dev",
         "igorw/config-service-provider": "1.2.*@dev"
     },
     "autoload": {
