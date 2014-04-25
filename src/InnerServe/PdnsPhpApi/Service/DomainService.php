@@ -5,6 +5,16 @@ class DomainService extends Service
 {
 
     /**
+     * Returns all domains, but does not return all records for each domain
+     * @return array
+     */
+    public function getAll() {
+        $stmt = $this->getPdo()->prepare("SELECT id, `name`, `type` FROM domains");
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    /**
      * Get domain information with all records and return as an associate array
      *
      * @param $domain
@@ -45,26 +55,26 @@ class DomainService extends Service
         return $this->get($domain);
     }
 
-    public function update($domain, $type = 'MASTER', $master = null, $new_domain = null)
+    public function update($domain_key, $type = 'MASTER', $master = null, $domain = null)
     {
-        if (!$this->exists($domain)) {
+        if (!$this->exists($domain_key)) {
             throw new \Exception("Domain not found");
         }
 
         $type = strtoupper($type);
 
-        if (empty($new_domain)) {
-            $new_domain = $domain;
+        if (empty($domain)) {
+            $domain = $domain_key;
         }
 
         if ($type == 'SLAVE' && empty($master)) {
             throw new \Exception("Master parameter required for SLAVE domains.");
         }
 
-        $stmt = $this->getPdo()->prepare("UPDATE domains SET  `name` = :new_name,  `type` = :type, `master` = :master WHERE `name` = :name");
-        $stmt->execute(array('name' => $domain, 'type' => $type, 'master' => $master, 'new_name' => $new_domain));
+        $stmt = $this->getPdo()->prepare("UPDATE domains SET  `name` = :domain,  `type` = :type, `master` = :master WHERE `name` = :domain_key");
+        $stmt->execute(array('name' => $domain, 'type' => $type, 'master' => $master, 'domain_key' => $domain_key));
 
-        return $this->get($new_domain);
+        return $this->get($domain);
     }
 
     public function delete($domain)
@@ -73,8 +83,13 @@ class DomainService extends Service
             throw new \Exception("Domain not found");
         }
 
+        $domain_id = $this->getIdForDomain($domain);
+
         $stmt = $this->getPdo()->prepare("DELETE FROM domains WHERE name = :domain");
         $stmt->execute(array('domain' => $domain));
+
+        $stmt = $this->getPdo()->prepare("DELETE FROM records WHERE domain_id = :domain_id");
+        $stmt->execute(array('domain_id' => $domain_id));
 
         return true;
     }

@@ -3,8 +3,65 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "25f349cf5ea6ad05a324fe8b2c33c7bd",
+    "hash": "e106aee99f0577af72cccd9860e01ce7",
     "packages": [
+        {
+            "name": "igorw/config-service-provider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/igorw/ConfigServiceProvider.git",
+                "reference": "8ccf0f6e9324629720c58fa071e74dbd2501f437"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/igorw/ConfigServiceProvider/zipball/8ccf0f6e9324629720c58fa071e74dbd2501f437",
+                "reference": "8ccf0f6e9324629720c58fa071e74dbd2501f437",
+                "shasum": ""
+            },
+            "require": {
+                "silex/silex": "~1.0"
+            },
+            "require-dev": {
+                "jamesmoss/toml": "~0.1",
+                "symfony/yaml": "~2.1"
+            },
+            "suggest": {
+                "jamesmoss/toml": "~0.1",
+                "symfony/yaml": "~2.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Igorw\\Silex": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch",
+                    "homepage": "http://wiedler.ch/igor/"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/igorw/ConfigServiceProvider/contributors"
+                }
+            ],
+            "description": "A config ServiceProvider for Silex with support for php, json and yaml.",
+            "keywords": [
+                "silex"
+            ],
+            "time": "2013-10-30 14:42:08"
+        },
         {
             "name": "pimple/pimple",
             "version": "1.1.x-dev",
@@ -241,12 +298,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "88a4b49c968137378f1257bd107fd13c0a7d15c3"
+                "reference": "79bb38a3607d8a4fe17497881b71aca54b9ca58c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/88a4b49c968137378f1257bd107fd13c0a7d15c3",
-                "reference": "88a4b49c968137378f1257bd107fd13c0a7d15c3",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/79bb38a3607d8a4fe17497881b71aca54b9ca58c",
+                "reference": "79bb38a3607d8a4fe17497881b71aca54b9ca58c",
                 "shasum": ""
             },
             "require": {
@@ -289,7 +346,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
-            "time": "2014-04-19 08:12:16"
+            "time": "2014-04-24 15:48:28"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -630,7 +687,8 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "symfony/class-loader": 20
+        "symfony/class-loader": 20,
+        "igorw/config-service-provider": 20
     },
     "platform": [
 

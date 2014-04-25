@@ -1,4 +1,5 @@
 composer.phar
+config/settings.json
 vendor/
 .idea/
 

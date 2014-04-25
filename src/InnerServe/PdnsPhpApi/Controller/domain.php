@@ -3,6 +3,18 @@ use Symfony\Component\HttpFoundation\Request;
 
 $domain = $app['controllers_factory'];
 
+$domain->get('/', function() use ($app)  {
+    $domain_service = new \InnerServe\PdnsPhpApi\Service\DomainService($app['pdo']);
+
+    try {
+        return $app['json_response']->ok($domain_service->getAll());
+    } catch(\Exception $e) {
+        return $app['json_response']->error($e->getMessage());
+    }
+
+});
+
+
 /**
  * Return Domain Information by domain
  */
@@ -37,7 +49,7 @@ $domain->put('/{domain}', function(\Silex\Application $app, Request $request, $d
     $domain_service = new \InnerServe\PdnsPhpApi\Service\DomainService($app['pdo']);
 
     try {
-        return $app['json_response']->ok($domain_service->update($domain, $request->get('type'), $request->get('master'), $request->get('new_domain')));
+        return $app['json_response']->ok($domain_service->update($domain, $request->get('type'), $request->get('master'), $request->get('domain')));
     } catch(\Exception $e) {
         return $app['json_response']->error($e->getMessage());
     }

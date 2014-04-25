@@ -1,0 +1,7 @@
+{
+    "database.dsn": "mysql:host=127.0.0.1;dbname=pdns",
+    "database.user": "",
+    "database.pass": "",
+    "security.user": "admin",
+    "security.pass": "5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=="
+}
